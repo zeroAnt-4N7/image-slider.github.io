@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <title>Image Slider</title>
+        <link rel="stylesheet" href="styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+    <div class="container">
+            <div class="slider-wrap">
+            <div class="button-wrap"><button id="prev-button"><img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_529.png&f=1&nofb=1" alt="Prev" draggable="false"></button></div>
+            <div class="img-wrap"><img id="image-box" class="run-animation" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ffullhdwall.com%2Fwp-content%2Fuploads%2F2016%2F03%2FCool-Landscape.jpg&f=1&nofb=1" alt="Image"></div>
+            <div class="button-wrap"><button id="next-button"><img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_529.png&f=1&nofb=1" alt="Next" draggable="false"></button></div></div>
+            <center><div id="controls" >
+                <button class="slider-button" onclick="setSlide(0)"></button>
+                <button class="slider-button" onclick="setSlide(1)"></button>
+                <button class="slider-button" onclick="setSlide(2)"></button>
+                <button class="slider-button" onclick="setSlide(3)"></button>
+                </div></center>
+        </div>
+        <script>
+            var images=["https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ffullhdwall.com%2Fwp-content%2Fuploads%2F2016%2F03%2FCool-Landscape.jpg&f=1&nofb=1","https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpixnio.com%2Ffree-images%2F2017%2F12%2F19%2F2017-12-19-21-28-15.jpg&f=1&nofb=1","https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pixelstalk.net%2Fwp-content%2Fuploads%2F2016%2F04%2FImages-photos-landscape-wallpaper-HD.jpg&f=1&nofb=1","https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2016%2F03%2F10%2F319576-photography-landscape-nature-water-grass-trees-plants-sunrise-lake.jpg&f=1&nofb=1"];
+
+var position=0;
+var imgWrap = document.getElementsByClassName("img-wrap");
+var imageBox = document.getElementById("image-box");
+var buttons = document.getElementsByClassName("slider-button");
+
+buttons[position].style.background = "white";
+imageBox.src=images[0];
+
+
+var nextButton = document.getElementById("next-button");
+nextButton.addEventListener("click", next, false);
+
+var prevButton = document.getElementById("prev-button");
+prevButton.addEventListener("click", prev, false);
+
+// var slide = setInterval(next, 5000);
+
+function setSlide(index){
+    imageBox.src = images[index];
+    buttons[position].style.background = "darkgrey";
+    position = index;
+    buttons[position].style.background = "white";
+}
+
+
+function next(){
+    buttons[position].style.background = "darkgrey";
+    if(position == images.length-1){
+        position = 0;
+    }
+    else{
+        position++;
+    }
+    imgWrap[0].style.background = "grey";
+    imageBox.classList.remove("run-animation");
+    imageBox.offsetWidth;
+    imageBox.classList.add("run-animation");
+    imageBox.src=images[position];
+    buttons[position].style.background = "white";
+    imgWrap[0].style.background = "white";
+
+}
+
+function prev(){
+    buttons[position].style.background = "darkgrey";
+    if(position == 0){
+        position = images.length-1;
+    }
+    else{
+        position--;
+    }
+    imgWrap[0].style.background = "grey";
+    imageBox.classList.remove("run-animation");
+    imageBox.offsetWidth;
+    imageBox.classList.add("run-animation");
+    imageBox.src=images[position];
+    buttons[position].style.background = "white";
+    imgWrap[0].style.background = "white";
+}
+        </script>
+    </body>
+</html>
